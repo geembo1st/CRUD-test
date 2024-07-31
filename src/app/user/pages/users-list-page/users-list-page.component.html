@@ -1,0 +1,4 @@
+<button [routerLink]="['..', 'create']">Создать профиль</button>
+<div class="users" *ngFor="let user of users" [routerLink]="['..',user._id]">
+    {{user.name}} {{user.age}} 
+</div>
