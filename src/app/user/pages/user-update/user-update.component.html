@@ -1,6 +1,22 @@
-<div class="update-user" *ngIf="user">
-    <input type="text" placeholder="Введите имя" [(ngModel)]="user.name">
-    <input type="text" placeholder="Введите email" [(ngModel)]="user.email">
-    <input type="number" placeholder="Введите возраст" [(ngModel)]="user.age">
-    <button (click)="updateUser()">Обновить данные</button>
-</div>
+<h1>Обновление пользователя</h1>
+<form *ngIf="updateForm" [formGroup]="updateForm" (ngSubmit)="updateUser()">
+    <div>
+      <span>Введите имя</span>
+      <input class="name" formControlName="name" placeholder="Введите имя">
+      <div class="warning-text" *ngIf="updateForm.get('name')?.invalid && updateForm.get('name')?.touched">Напишите имя</div>
+    </div>
+  
+    <div>
+      <span>Введите email</span>
+      <input class="email" formControlName="email" placeholder="Введите email">
+      <div class="warning-text" *ngIf="updateForm.get('email')?.invalid && updateForm.get('email')?.touched">Напишите email</div>
+    </div>
+  
+    <div>
+      <span>Введите возраст</span>
+      <input class="age" formControlName="age" type="number" placeholder="Введите возраст">
+      <div class="warning-text" *ngIf="updateForm.get('age')?.invalid && updateForm.get('age')?.touched">Пользователь должен быть старше 18</div>
+    </div>
+  
+    <button type="submit" [disabled]="updateForm.invalid">Обновить данные</button>
+</form>

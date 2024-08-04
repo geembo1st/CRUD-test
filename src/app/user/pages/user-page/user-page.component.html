@@ -1,10 +1,10 @@
-
-<button [routerLink]="['..']">Выйти</button>
+<button class="exit" [routerLink]="['..']">Выйти</button>
 <div *ngIf="user">
     {{user.name}}
 </div>
-<button [routerLink]="['update']">Обновить данные</button>
-<button (click)="deleteUser()">Удалить пользователя</button>
+<button class="update-user" [routerLink]="['update']">Обновить данные</button>
+<button class="delete-user" (click)="deleteUser()">Удалить пользователя</button>
 
 
 
+ 

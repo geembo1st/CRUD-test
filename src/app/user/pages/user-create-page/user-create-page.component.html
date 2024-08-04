@@ -1,11 +1,24 @@
+<h1>Создание пользователя</h1>
 <form [formGroup]="myForm" (ngSubmit)="createUser()">
     <div class="add-user">
-        <input type="text" placeholder="Введите имя" formControlName="name">
-        <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">Напишите имя</div>
-        <input type="text" placeholder="Введите email" formControlName="email">
-        <div *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">Напишите email</div>
-        <input type="number" placeholder="Введите возраст" formControlName="age">
-        <div *ngIf="myForm.get('age')?.invalid && myForm.get('age')?.touched">Пользователь должен быть старше 18</div>
+        <div>
+            <span>Введите имя</span>
+            <input type="text" placeholder="Введите имя" formControlName="name">
+            <div class="warning-text" *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">Напишите имя</div>
+        </div>
+
+        <div>
+            <span>Введите email</span>
+            <input type="text" placeholder="Введите email" formControlName="email">
+            <div class="warning-text" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">Напишите email</div>
+        </div>
+
+        <div>
+            <span>Введите возраст</span>
+            <input type="number" placeholder="Введите возраст" formControlName="age">
+            <div class="warning-text" *ngIf="myForm.get('age')?.invalid && myForm.get('age')?.touched">Пользователь должен быть старше 18</div>
+        </div>
+            
         <button type="submit" [disabled]="!myForm.valid">Сохранить</button>
     </div>
 </form>

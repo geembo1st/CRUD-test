@@ -25,9 +25,9 @@ export class UserCreatePageComponent {
   createUser() {
     if (this.myForm.valid) {
       const addUserData: AddUserData = {
-        age: this.myForm.value.age ?? 0,
-        name: this.myForm.value.name ?? '',
-        email: this.myForm.value.email ?? ''
+        age: this.myForm.value.age!,
+        name: this.myForm.value.name!,
+        email: this.myForm.value.email!
       };
       this.userService.create(addUserData).subscribe(() => { 
         this.router.navigate(['users','list'])

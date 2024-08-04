@@ -1,0 +1,52 @@
+button.exit {
+    background-color: #dc3545; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px;
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 16px;
+    margin-right: 10px; 
+  }
+  
+  button.exit:hover {
+    background-color: #c82333; 
+  }
+  
+  button.update-user {
+    background-color: #007bff; 
+    color: white;
+    border: none; 
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px; 
+    margin-right: 10px; 
+  }
+  
+  button.update-user:hover {
+    background-color: #0056b3;
+  }
+  
+  button.delete-user {
+    background-color: #ffc107; 
+    color: #212529;
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 4px;
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s ease;
+  }
+  
+  button.delete-user:hover {
+    background-color: #e0a800;
+  }
+  
+  div {
+    margin: 20px 0; 
+    font-size: 18px;
+    color: #333; 
+    font-weight: bold; 
+  }
+  
