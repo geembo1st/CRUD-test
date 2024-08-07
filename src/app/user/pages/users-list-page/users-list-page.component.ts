@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../user.service';
+import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './users-list-page.component.css'
 })
 export class UsersListPageComponent {
+
   constructor(private userService:UserService){
     this.userService.getAll().subscribe((users) => {
       this.users=users;

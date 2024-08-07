@@ -3,6 +3,7 @@ import { UsersListPageComponent } from './user/pages/users-list-page/users-list-
 import { UserCreatePageComponent } from './user/pages/user-create-page/user-create-page.component';
 import { UserPageComponent } from './user/pages/user-page/user-page.component';
 import { UserUpdateComponent } from './user/pages/user-update/user-update.component';
+import { getUserResolverFunc } from './user/services/get-user.resolver';
 
 
 
@@ -30,7 +31,10 @@ export const routes: Routes = [
             },
             {
                 path: ':userId',
-                component: UserPageComponent,            
+                component: UserPageComponent,   
+                resolve: {
+                    user: getUserResolverFunc
+                }         
             },
             {
                 path: ':userId/update',

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UserService } from '../../user.service';
+import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import {  mergeMap, Subscription } from 'rxjs';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -22,12 +22,10 @@ export class UserPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.pipe(
-      mergeMap(({ userId }) => this.userService.get(userId)),
-    ).subscribe((user) => {
-      this.user=user;
+    this.routeSub = this.route.data.subscribe(data => {
+      this.user = data['user'];
       console.log(this.user)
-    });
+    })
   }
 
   ngOnDestroy(): void {

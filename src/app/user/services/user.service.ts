@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from './models/user';
-import { AddUserData } from './models/add-user-data';
+import { User } from '../models/user';
+import { AddUserData } from '../models/add-user-data';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  baseHref = 'https://crudcrud.com/api/ded8696ab9ea401fb1949f490cd9063a';
+    
+  baseHref = 'https://crudcrud.com/api/8d07a6e3a7e44add8bb2a18eddb60370';
+    static getUserById: any;
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<User[]> {
