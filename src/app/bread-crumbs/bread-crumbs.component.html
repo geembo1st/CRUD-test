@@ -1,0 +1,13 @@
+<nav *ngIf="breadCrumbs.length > 0">
+    <ul>
+      <li *ngFor="let breadCrumb of breadCrumbs; let last = last">
+        <ng-container *ngIf="!last">
+          <a [routerLink]="breadCrumb.url">{{ breadCrumb.label }}</a> 
+          <span>/</span>
+        </ng-container>
+        <ng-container *ngIf="last">
+          {{ breadCrumb.label }}
+        </ng-container>
+      </li>
+    </ul>
+  </nav>

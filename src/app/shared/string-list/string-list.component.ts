@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, forwardRef, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
-import { Roles } from './roles.enum';
+import { Roles } from '../roles.enum';
 
 @Component({
   selector: 'app-string-list',

@@ -5,7 +5,7 @@ import { AddUserData } from '../../models/add-user-data';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StringListComponent } from '../../../shared/string-list/string-list.component';
-import { Roles } from '../../../shared/string-list/roles.enum'; 
+import { Roles } from '../../../shared/roles.enum'; 
 
 @Component({
   selector: 'app-user-create-page',

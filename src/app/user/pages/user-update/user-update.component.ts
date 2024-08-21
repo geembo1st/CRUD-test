@@ -6,7 +6,7 @@ import { UserService } from '../../services/user.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { StringListComponent } from '../../../shared/string-list/string-list.component';
-import { Roles } from '../../../shared/string-list/roles.enum';
+import { Roles } from '../../../shared/roles.enum';
 
 @Component({
   selector: 'app-user-update',
