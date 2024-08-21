@@ -7,5 +7,3 @@ export const getUserResolverFunc: ResolveFn<User> = (route, state) => {
     const userId = route.paramMap.get('userId')!;
     return inject(UserService).get(userId);
 };
-
- //на странице позьзователя изобразить список книг 

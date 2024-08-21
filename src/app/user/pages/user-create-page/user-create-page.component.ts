@@ -5,6 +5,7 @@ import { AddUserData } from '../../models/add-user-data';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StringListComponent } from '../../../shared/string-list/string-list.component';
+import { Roles } from '../../../shared/string-list/roles.enum'; 
 
 @Component({
   selector: 'app-user-create-page',
@@ -15,13 +16,15 @@ import { StringListComponent } from '../../../shared/string-list/string-list.com
 })
 export class UserCreatePageComponent {
   [x: string]: any;
+  availableRoles = Object.values(Roles);
   constructor(private userService: UserService, private router: Router){}
   
   myForm = new FormGroup ({
     age: new FormControl(null, [Validators.min(18)]),
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    favoriteBooks: new FormControl<string[]>([]),
+    login: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    userRoles: new FormControl<string[]>([]),
   })
 
   createUser() {
@@ -29,11 +32,12 @@ export class UserCreatePageComponent {
       const addUserData: AddUserData = {
         age: this.myForm.value.age!,
         name: this.myForm.value.name!,
-        email: this.myForm.value.email!,
-        favoriteBooks: this.myForm.value.favoriteBooks!
+        login: this.myForm.value.login!,
+        password: this.myForm.value.password!,
+        userRoles: this.myForm.value.userRoles!
       };
       this.userService.create(addUserData).subscribe((user) => { 
-        this.router.navigate(['users',user._id])
+        this.router.navigate(['app','users',user._id])
       })
     }
   }

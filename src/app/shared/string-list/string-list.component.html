@@ -1,12 +1,7 @@
-<div *ngFor="let value of values; let i = index; trackBy: trackByFunc" class="book-entry">
-    <input 
-      type="text" 
-      [value]="value" 
-      (input)="onInput($event, i)" 
-      (blur)="onBlur()" 
-      placeholder="Название книги"
-    />
-    <button type="button" (click)="removeBook(i)">{{ deleteLabel }}</button>
+   <div *ngFor="let value of selectedValues; let i = index; trackBy: trackByFunc" class="value-entry">
+    <select (change)="onInput($event, i)" (blur)="onBlur()"  [value]="value">
+      <option *ngFor="let value of availableValues" [value]="value">{{ value }}</option>
+    </select>
+    <button type="button" (click)="remove(i)">{{ deleteLabel }}</button>
   </div>
   <button type="button" (click)="add()">{{ addLabel }}</button>
-  

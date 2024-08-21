@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { StringListComponent } from '../../../shared/string-list/string-list.component';
+import { Roles } from '../../../shared/string-list/roles.enum';
 
 @Component({
   selector: 'app-user-update',
@@ -16,14 +17,15 @@ import { StringListComponent } from '../../../shared/string-list/string-list.com
 })
 export class UserUpdateComponent implements OnDestroy {
   private destroy$ = new Subject<void>();
-
+  availableRoles = Object.values(Roles);
   user!: User;
 
   updateForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    login: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
     age: new FormControl<null | number>(null, [Validators.min(18), Validators.required]),
-    favoriteBooks: new FormControl<string[]>([]),
+    userRoles: new FormControl<string[]>([]),
   });
 
   constructor(
@@ -40,8 +42,9 @@ export class UserUpdateComponent implements OnDestroy {
         this.updateForm.setValue({
           name: this.user.name,
           age: this.user.age,
-          email: this.user.email,
-          favoriteBooks: this.user.favoriteBooks || [],
+          login: this.user.login,
+          password: this.user.password,
+          userRoles: this.user.userRoles || [],
         });
       });
   }
@@ -64,7 +67,7 @@ export class UserUpdateComponent implements OnDestroy {
       ...formValue,
     };
     this.userService.update(updatedUser).subscribe(() => { 
-      this.router.navigate(['users', this.user._id]);
+      this.router.navigate(['app','users', this.user._id]);
     });
   }
 }

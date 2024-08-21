@@ -1,10 +1,15 @@
 <button class="exit" [routerLink]="['..']">Выйти</button>
 <div *ngIf="user">
+    <span>Имя</span>
     {{user.name}}
-    <div *ngIf="user.favoriteBooks.length > 0">
-        <h3>Любимые книги:</h3>
+    <span>Логин</span>
+    {{user.login}}
+    <span>Возраст</span>
+    {{user.age}}
+    <div *ngIf="user.userRoles.length > 0">
+        <h3>Роль:</h3>
         <ul>
-          <li *ngFor="let book of user.favoriteBooks">{{ book }}</li>
+          <li *ngFor="let role of user.userRoles">{{ role }}</li>
         </ul>
 </div>
 <button class="update-user" [routerLink]="['update']">Обновить данные</button>

@@ -2,6 +2,7 @@ export interface User {
   _id: string;
   name: string;
   age: number;
-  email: string;
-  favoriteBooks: string[];
+  login: string;
+  password: string;
+  userRoles: string[];
 }

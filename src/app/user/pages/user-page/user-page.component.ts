@@ -34,7 +34,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   deleteUser() {
     this.userService.delete(this.user!._id).subscribe(() => { 
-      this.router.navigate(['users','list'])
+      this.router.navigate(['app','users','list'])
     })
   }
 }

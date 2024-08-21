@@ -5,11 +5,17 @@
       <input class="name" formControlName="name" placeholder="Введите имя">
       <div class="warning-text" *ngIf="updateForm.get('name')?.invalid && updateForm.get('name')?.touched">Напишите имя</div>
     </div>
+
+    <div>
+      <span>Введите логин</span>
+      <input type="text" placeholder="Введите логин" formControlName="login">
+      <div class="warning-text" *ngIf="updateForm.get('login')?.invalid && updateForm.get('login')?.touched">Напишите логин</div>
+  </div>
   
     <div>
-      <span>Введите email</span>
-      <input class="email" formControlName="email" placeholder="Введите email">
-      <div class="warning-text" *ngIf="updateForm.get('email')?.invalid && updateForm.get('email')?.touched">Напишите email</div>
+      <span>Введите пароль</span>
+      <input class="password" formControlName="password" placeholder="Введите пароль">
+      <div class="warning-text" *ngIf="updateForm.get('password')?.invalid && updateForm.get('password')?.touched">Напишите пароль</div>
     </div>
   
     <div>
@@ -19,9 +25,9 @@
     </div>
 
     <div>
-      <span>Любимые книги</span>
-      <app-string-list addLabel="Добавить книгу" formControlName="favoriteBooks"></app-string-list>
-  </div>
+      <span>Выберите роль</span>
+      <app-string-list addLabel="Добавить роль" [availableValues]="availableRoles" formControlName="userRoles"></app-string-list>
+    </div>
 
     <button type="submit" [disabled]="updateForm.invalid">Обновить данные</button>
 </form>

@@ -1,12 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, forwardRef, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
-/**
- * Есть кнопка "Добавить"
- * При нажатии, добавлять новый инпут
- * У каждого инпута слева будет кнопка "Удалить"
- * Компонента должна реализоввыать ControlValueAccessor
- */
+import { Roles } from './roles.enum';
 
 @Component({
   selector: 'app-string-list',
@@ -23,9 +18,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms
   styleUrl: './string-list.component.css'
 })
 export class StringListComponent implements ControlValueAccessor {
-  values: string[] = [];
+  @Input() availableValues = Object.values(Roles);
   private onChange!: (value: string[]) => void;
   private onTouched: () => void = () => {};
+  selectedValues: string[] = [];
 
   @Input()
   public addLabel = 'Добавить'
@@ -33,15 +29,15 @@ export class StringListComponent implements ControlValueAccessor {
   @Input()
   public deleteLabel = 'Удалить'
 
-  writeValue(value: string[]): void { //тут тоже меняй ссылку
+  writeValue(value: string[]): void {
     if(value) {
-      this.values = [...value];
+      this.selectedValues = [...value];
       };
     }
 
   registerOnChange(fn: (value: string[]) => void): void {
     this.onChange = (value: string[]) => {
-      fn([...value]); // --меняем ссылку
+      fn([...value]); 
     };
   }
 
@@ -50,24 +46,24 @@ export class StringListComponent implements ControlValueAccessor {
   }
 
   public add() {
-    this.values = [...this.values, ''];
-    this.onChange(this.values);
+    this.selectedValues.push(this.availableValues[0]);
+    this.onChange(this.selectedValues);
   }
 
   onInput(event: Event, index: number) {
-    const value = (event.target as HTMLInputElement).value;
-    this.values[index] = value;
-    this.onChange(this.values);
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.selectedValues[index] = selectedValue;
+    this.onChange(this.selectedValues);
   }
 
   onBlur() {
     this.onTouched();
-    this.onChange(this.values);
+    this.onChange(this.selectedValues);
   }
 
-  removeBook(index: number) {
-    this.values.splice(index, 1); 
-    this.onChange(this.values);   
+  remove(index: number) {
+    this.selectedValues.splice(index, 1); 
+    this.onChange(this.selectedValues);   
   }
 
   trackByFunc = (idx: number) => idx;

@@ -1,12 +1,6 @@
 import { Routes } from '@angular/router';
-import { UsersListPageComponent } from './user/pages/users-list-page/users-list-page.component';
-import { UserCreatePageComponent } from './user/pages/user-create-page/user-create-page.component';
-import { UserPageComponent } from './user/pages/user-page/user-page.component';
-import { UserUpdateComponent } from './user/pages/user-update/user-update.component';
-import { getUserResolverFunc } from './user/services/get-user.resolver';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
-import { USER_ROUTES } from './user/routes';
 
 
 

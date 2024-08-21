@@ -8,9 +8,15 @@
         </div>
 
         <div>
-            <span>Введите email</span>
-            <input type="text" placeholder="Введите email" formControlName="email">
-            <div class="warning-text" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">Напишите email</div>
+            <span>Введите логин</span>
+            <input type="text" placeholder="Введите логин" formControlName="login">
+            <div class="warning-text" *ngIf="myForm.get('login')?.invalid && myForm.get('login')?.touched">Напишите логин</div>
+        </div>
+
+        <div>
+            <span>Введите пароль</span>
+            <input type="text" placeholder="Введите пароль" formControlName="password">
+            <div class="warning-text" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">Напишите пароль</div>
         </div>
 
         <div>
@@ -20,8 +26,8 @@
         </div>
 
         <div>
-            <span>Любимые книги</span>
-            <app-string-list addLabel="Добавить книгу" formControlName="favoriteBooks"></app-string-list>
+            <span>Выберите роль</span>
+            <app-string-list addLabel="Добавить роль" [availableValues]="availableRoles" formControlName="userRoles"></app-string-list>
         </div>
             
         <button type="submit" [disabled]="!myForm.valid">Сохранить</button>
