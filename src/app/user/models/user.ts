@@ -3,5 +3,5 @@ export interface User {
   name: string;
   age: number;
   email: string;
-  // favoriteBooks: string[];
+  favoriteBooks: string[];
 }

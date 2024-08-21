@@ -4,43 +4,39 @@ import { UserCreatePageComponent } from './user/pages/user-create-page/user-crea
 import { UserPageComponent } from './user/pages/user-page/user-page.component';
 import { UserUpdateComponent } from './user/pages/user-update/user-update.component';
 import { getUserResolverFunc } from './user/services/get-user.resolver';
+import { LayoutComponent } from './layout/layout.component';
+import { LoginComponent } from './login/login.component';
+import { USER_ROUTES } from './user/routes';
 
 
 
 export const routes: Routes = [
     {
         path:'',
-        redirectTo:'users',
+        redirectTo:'app',
         pathMatch:'full',
     },
     {
-        path:'users',
+        path: 'app',
+        component: LayoutComponent,
         children: [
             {
                 path: '',
-                redirectTo: 'list',
-                pathMatch: 'full',
+                redirectTo: 'users',
+                pathMatch:'full',
             },
             {
-                path: 'list',
-                component: UsersListPageComponent,
+                path:'users',
+                data: {
+                    title: "Пользователи",
+                },
+                loadChildren: () => import('./user/routes').then((c) => c.USER_ROUTES)
             },
-            {
-                path: 'create',
-                component: UserCreatePageComponent,
-            },
-            {
-                path: ':userId',
-                component: UserPageComponent,   
-                resolve: {
-                    user: getUserResolverFunc
-                }         
-            },
-            {
-                path: ':userId/update',
-                component: UserUpdateComponent,     
-            }
-        ],
+        ]
     },
+    {
+        path: 'login',
+        component: LoginComponent,
+    }
 ];
 

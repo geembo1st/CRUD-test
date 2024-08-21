@@ -1,6 +1,11 @@
 <button class="exit" [routerLink]="['..']">Выйти</button>
 <div *ngIf="user">
     {{user.name}}
+    <div *ngIf="user.favoriteBooks.length > 0">
+        <h3>Любимые книги:</h3>
+        <ul>
+          <li *ngFor="let book of user.favoriteBooks">{{ book }}</li>
+        </ul>
 </div>
 <button class="update-user" [routerLink]="['update']">Обновить данные</button>
 <button class="delete-user" (click)="deleteUser()">Удалить пользователя</button>

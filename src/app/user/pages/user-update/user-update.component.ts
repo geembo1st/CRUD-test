@@ -1,48 +1,49 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject, Subscription, mergeMap, takeUntil, tap } from 'rxjs';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { StringListComponent } from '../../../shared/string-list/string-list.component';
 
 @Component({
   selector: 'app-user-update',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, StringListComponent],
   templateUrl: './user-update.component.html',
   styleUrls: ['./user-update.component.css']
 })
 export class UserUpdateComponent implements OnDestroy {
   private destroy$ = new Subject<void>();
 
-  user: User | null = null;
-
-  user$!: Observable<User>
+  user!: User;
 
   updateForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    age: new FormControl<null | number>(null, [Validators.min(18), Validators.required])
+    email: new FormControl('', [Validators.required]),
+    age: new FormControl<null | number>(null, [Validators.min(18), Validators.required]),
+    favoriteBooks: new FormControl<string[]>([]),
   });
 
   constructor(
     private userService:UserService,
     private route:ActivatedRoute,
     private router: Router,
-  ){
-    this.user$ = this.route.params.pipe(
-      takeUntil(this.destroy$),
-      mergeMap(({ userId }) => this.userService.get(userId)),
-      tap((user) => {
-        this.user = user;
+  ){}
+
+  ngOnInit(): void {
+    this.route.data
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.user = data['user'];
         this.updateForm.setValue({
-          name: user.name,
-          age: user.age,
-          email: user.email,
+          name: this.user.name,
+          age: this.user.age,
+          email: this.user.email,
+          favoriteBooks: this.user.favoriteBooks || [],
         });
-      }),
-    );
+      });
   }
 
   ngOnDestroy() {
@@ -51,18 +52,20 @@ export class UserUpdateComponent implements OnDestroy {
   }
   
   updateUser() {
-    if (this.updateForm.valid && this.user) {
-      const formValue = this.updateForm.value as Omit<User, '_id'>;
-      const updatedUser: User = {
-        _id: this.user._id,
-        ...formValue,
-      };
-      this.userService.update(updatedUser).subscribe(() => { 
-        this.router.navigate(['users', 'list']);
-      });
-    } else {
+    console.log(this.updateForm.valid);
+    console.log(this.updateForm.value);
+    if (this.updateForm.invalid || !this.user) {
       console.error('Форма недействительна или пользователь не найден для обновления');
+      return;
     }
+    const formValue = this.updateForm.value as Omit<User, '_id'>;
+    const updatedUser: User = {
+      _id: this.user._id,
+      ...formValue,
+    };
+    this.userService.update(updatedUser).subscribe(() => { 
+      this.router.navigate(['users', this.user._id]);
+    });
   }
 }
 

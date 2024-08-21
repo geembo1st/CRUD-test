@@ -1,1 +1,12 @@
-<p>string-list works!</p>
+<div *ngFor="let value of values; let i = index; trackBy: trackByFunc" class="book-entry">
+    <input 
+      type="text" 
+      [value]="value" 
+      (input)="onInput($event, i)" 
+      (blur)="onBlur()" 
+      placeholder="Название книги"
+    />
+    <button type="button" (click)="removeBook(i)">{{ deleteLabel }}</button>
+  </div>
+  <button type="button" (click)="add()">{{ addLabel }}</button>
+  

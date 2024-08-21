@@ -18,6 +18,11 @@
             <input type="number" placeholder="Введите возраст" formControlName="age">
             <div class="warning-text" *ngIf="myForm.get('age')?.invalid && myForm.get('age')?.touched">Пользователь должен быть старше 18</div>
         </div>
+
+        <div>
+            <span>Любимые книги</span>
+            <app-string-list addLabel="Добавить книгу" formControlName="favoriteBooks"></app-string-list>
+        </div>
             
         <button type="submit" [disabled]="!myForm.valid">Сохранить</button>
     </div>

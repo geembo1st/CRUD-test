@@ -1,5 +1,5 @@
 <h1>Обновление пользователя</h1>
-<form *ngIf="user$ | async" [formGroup]="updateForm" (ngSubmit)="updateUser()">
+<form [formGroup]="updateForm" (ngSubmit)="updateUser()">
     <div>
       <span>Введите имя</span>
       <input class="name" formControlName="name" placeholder="Введите имя">
@@ -17,6 +17,11 @@
       <input class="age" formControlName="age" type="number" placeholder="Введите возраст">
       <div class="warning-text" *ngIf="updateForm.get('age')?.invalid && updateForm.get('age')?.touched">Пользователь должен быть старше 18</div>
     </div>
-  
-    <button type="submit" [disabled]="updateForm.invalid || !this.user">Обновить данные</button>
+
+    <div>
+      <span>Любимые книги</span>
+      <app-string-list addLabel="Добавить книгу" formControlName="favoriteBooks"></app-string-list>
+  </div>
+
+    <button type="submit" [disabled]="updateForm.invalid">Обновить данные</button>
 </form>

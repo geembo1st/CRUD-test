@@ -10,7 +10,7 @@ import { AddUserData } from '../models/add-user-data';
 })
 export class UserService {
     
-  baseHref = 'https://crudcrud.com/api/8d07a6e3a7e44add8bb2a18eddb60370';
+  baseHref = 'https://crudcrud.com/api/92200ea5bea14a76b29ccc66c8627638';
     static getUserById: any;
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,10 @@ export class UserService {
   }
 
   update(user: User): Observable<User> {
-    return this.http.put<User>(`${this.baseHref}/users/${user._id}`, user);
+    return this.http.put<User>(`${this.baseHref}/users/${user._id}`, {
+      ...user,
+      _id: undefined,
+    });
   }
 
   delete(id: string): Observable<void> {
