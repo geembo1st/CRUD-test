@@ -15,7 +15,7 @@
 
         <div>
             <span>Введите пароль</span>
-            <input type="text" placeholder="Введите пароль" formControlName="password">
+            <input type="password" placeholder="Введите пароль" formControlName="password">
             <div class="warning-text" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">Напишите пароль</div>
         </div>
 

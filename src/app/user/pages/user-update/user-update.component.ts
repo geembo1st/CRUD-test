@@ -71,8 +71,3 @@ export class UserUpdateComponent implements OnDestroy {
     });
   }
 }
-
-
-/**
- * 1) Релизовать Resolver, он будет считывать UserId из параметров роутера, получать пользователя
- */
