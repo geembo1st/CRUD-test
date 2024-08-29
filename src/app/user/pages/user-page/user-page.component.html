@@ -1,16 +1,23 @@
 <button class="exit" [routerLink]="['..']">Выйти</button>
-<div *ngIf="user">
-    <span>Имя</span>
-    {{user.name}}
-    <span>Логин</span>
-    {{user.login}}
-    <span>Возраст</span>
-    {{user.age}}
-    <div *ngIf="user.userRoles.length > 0">
+<div *ngIf="user" class="user-details">
+    <div class="user-info">
+        <span class="label">Имя:</span>
+        <span class="value">{{user.name}}</span>
+    </div>
+    <div class="user-info">
+        <span class="label">Логин:</span>
+        <span class="value">{{user.login}}</span>
+    </div>
+    <div class="user-info">
+        <span class="label">Возраст:</span>
+        <span class="value">{{user.age}}</span>
+    </div>
+    <div *ngIf="user.userRoles.length > 0" class="user-roles">
         <h3>Роль:</h3>
         <ul>
-          <li *ngFor="let role of user.userRoles">{{ role }}</li>
+            <li *ngFor="let role of user.userRoles">{{ role }}</li>
         </ul>
+    </div>
 </div>
 <button class="update-user" [routerLink]="['update']">Обновить данные</button>
 <button class="delete-user" (click)="deleteUser()">Удалить пользователя</button>

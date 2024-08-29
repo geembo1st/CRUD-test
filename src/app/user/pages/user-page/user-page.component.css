@@ -42,11 +42,41 @@ button.exit {
   button.delete-user:hover {
     background-color: #e0a800;
   }
-  
-  div {
-    margin: 20px 0; 
-    font-size: 18px;
-    color: #333; 
-    font-weight: bold; 
-  }
-  
+
+   .user-details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.user-info {
+    margin-bottom: 15px;
+}
+
+.label {
+    font-weight: bold;
+    color: black;
+    display: inline-block;
+    width: 80px;
+}
+
+.value {
+    color: black;
+    margin-left: 10px;
+}
+
+.user-roles h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.user-roles ul {
+    padding-left: 20px;
+}
+
+.user-roles li {
+    color: black;
+}

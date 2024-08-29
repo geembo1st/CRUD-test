@@ -1,13 +1,14 @@
-<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-    <div>
-      <span>Введите логин</span>
-      <input type="text" placeholder="Введите логин" formControlName="login">
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="login-form">
+
+    <div class="form-group">
+        <span>Введите логин</span>
+        <input type="text" placeholder="Введите логин" formControlName="login">
     </div>
   
-    <div>
-      <span>Введите пароль</span>
-      <input type="password" placeholder="Введите пароль" formControlName="password">
+    <div class="form-group">
+        <span>Введите пароль</span>
+        <input type="password" placeholder="Введите пароль" formControlName="password">
     </div>
   
     <button type="submit">Войти</button>
-  </form>
+</form>
