@@ -1,6 +1,12 @@
 <header>
     <app-bread-crumbs></app-bread-crumbs>
-    <button [routerLink]="['/login']">Войти</button>
+    <div *ngIf="authService.currentUser$ | async as user; else enter">
+        <span>Привет, {{ user.name }}</span>
+        <button (click)="logout()">Выйти</button>
+    </div>
+    <ng-template #enter>
+        <button [routerLink]="['/login']">Войти</button>
+    </ng-template>
 </header>
 <main>
     <router-outlet></router-outlet>

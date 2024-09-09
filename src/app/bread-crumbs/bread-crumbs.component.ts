@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadCrumbService } from '../user/services/breadCrump.service';
+import { BreadCrumbService } from '../core/service/bread-crump.service';
 import { BreadCrumb } from '../shared/breadCrumb';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';

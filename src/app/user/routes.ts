@@ -4,7 +4,7 @@ import { UserPageComponent } from "./pages/user-page/user-page.component";
 import { UserUpdateComponent } from "./pages/user-update/user-update.component";
 import { UsersListPageComponent } from "./pages/users-list-page/users-list-page.component";
 import { getUserResolverFunc } from "./services/get-user.resolver";
-import { AuthGuard } from "../auth.guard";
+import { AuthGuard } from "../core/guards/auth.guard";
 
 
 export const USER_ROUTES: Routes = [
